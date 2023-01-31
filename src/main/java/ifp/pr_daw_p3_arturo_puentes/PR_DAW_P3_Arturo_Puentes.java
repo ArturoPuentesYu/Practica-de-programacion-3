@@ -6,9 +6,11 @@
 package ifp.pr_daw_p3_arturo_puentes;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.System.*;
 import javax.swing.*;
@@ -24,7 +26,7 @@ public class PR_DAW_P3_Arturo_Puentes {
     static String fichero = null;
     static JFileChooser jFC = new JFileChooser();
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int op;
         boolean bucle = true;
         while (bucle){
@@ -97,30 +99,50 @@ public class PR_DAW_P3_Arturo_Puentes {
         //
     }
 
-    private static void leerFichero(File file) {
+    private static void leerFichero(File file) throws IOException {
 
         jFC.setDialogTitle("Leer fichero");
         //Parte que lee el fichero y lo muestra en un JOptionPane
+       
+        String text = convertirFicheroToString(file);
+        JOptionPane.showMessageDialog(null, text , jFC.getName(new File(jFC.getSelectedFile().getAbsolutePath())), JOptionPane.PLAIN_MESSAGE);
+    }
+
+    private static void escribirFichero(File file) throws IOException{
+        String text = convertirFicheroToString(file);
+        JTextArea textArea = new JTextArea(text);
+        textArea.setLineWrap(true);
+        textArea.setEditable(true);
+        JScrollPane scroll = new JScrollPane(textArea);
+        JOptionPane.showMessageDialog(null,scroll,file.getName(),JOptionPane.OK_OPTION);
+        
         try {
+                // Crea el escritor de ficheros
+                FileWriter wr = new FileWriter(file, false);
+
+                // Crea el buffered writer para escribir
+                BufferedWriter w = new BufferedWriter(wr);
+
+                // Escribe del textArea
+                w.write(textArea.getText());
+                
+                w.flush();
+                w.close();
+        }
+        catch (Exception evt) {
+                JOptionPane.showMessageDialog(null, evt.getMessage());
+        }
+    }
+    
+    private static String convertirFicheroToString(File file) throws FileNotFoundException, IOException{
         BufferedReader in;
         in = new BufferedReader(new FileReader(file));
         String line = in.readLine();
-        String text = "";
+        String text = line;
         while (line != null) {
             text = text + "\n" + line;
             line = in.readLine();
         }
-        JOptionPane.showMessageDialog(null, text , jFC.getName(new File(jFC.getSelectedFile().getAbsolutePath())), JOptionPane.PLAIN_MESSAGE);
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) {
-        //
-        }
-
+        return text;
     }
-
-    private static void escribirFichero(File file) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
 }
