@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package ifp.pr_daw_p3_arturo_puentes;
 
 import java.io.BufferedReader;
@@ -16,24 +11,25 @@ import static java.lang.System.*;
 import javax.swing.*;
 
 /**
- *
- * @author ajpyu
+ * Programa que realiza una gestión sencilla de ficheros de texto
+ * @author Arturo Puentes Yu
  */
 public class PR_DAW_P3_Arturo_Puentes {
     
-    static String[] opciones = {"Crear","Leer","Escribir","Borrar","Copiar","Salir"};
-    static String ruta = null;
-    static String fichero = null;
-    static JFileChooser jFC = new JFileChooser();
-    
+    /**
+     * @version 1.0
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
+        String[] opciones = {"Crear","Leer","Escribir","Borrar","Copiar","Salir"};
         int op;
         boolean bucle = true;
         while (bucle){
             op = JOptionPane.showOptionDialog(null, "Elije una opcion", "Gestor de archivos",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
             opciones[0]);
-            if (op == 5) {
+            if (op == 5 || op == JOptionPane.CLOSED_OPTION) {
                 exit(0);
                 bucle = false;
             }
@@ -62,8 +58,14 @@ public class PR_DAW_P3_Arturo_Puentes {
         }
     }  
     
-    private static File abrirFichero() {
-        
+    /**
+     * Utiliza JFileChooser para crear un objeto tipo File
+     * @return Retorna un objeto tipo File con el nombre y la ruta de un fichero
+     */
+    public static File abrirFichero() {
+        JFileChooser jFC = new JFileChooser();
+        String fichero;
+        String ruta;
         int retorno = jFC.showOpenDialog(jFC);
         File file = null;
         if (retorno == JFileChooser.APPROVE_OPTION) {
@@ -81,14 +83,16 @@ public class PR_DAW_P3_Arturo_Puentes {
         return file;
     }
     
-    private static void crearFichero(File file){
-        jFC.setDialogTitle("Crear fichero");
-        
-        //Parte que comprueba si existe y lo creo o de lo contrario notifica que ya existe
+    /**
+     *  Crea un fichero en la ruta que se ha seleccionado
+     *  En caso de que ya exista enseña un mensaje
+     * @param file objeto previamente creado en abrirFichero()
+     */
+    public static void crearFichero(File file){
         if (!file.exists()) {
             try {
             file.createNewFile();
-            JOptionPane.showMessageDialog(null, "Se ha creado el fichero " + jFC.getName(new File(jFC.getSelectedFile().getAbsolutePath())));
+            JOptionPane.showMessageDialog(null, "Se ha creado el fichero " + file.getName());
             }
             catch(IOException e){
                 e.printStackTrace();
@@ -96,19 +100,24 @@ public class PR_DAW_P3_Arturo_Puentes {
         } else {
             JOptionPane.showMessageDialog(null, "Este archivo ya existe");
         }
-        //
     }
 
-    private static void leerFichero(File file) throws IOException {
-
-        jFC.setDialogTitle("Leer fichero");
-        //Parte que lee el fichero y lo muestra en un JOptionPane
-       
+    /**
+     * Muestra el contenido del archivo y no permite editarlo
+     * @param file objeto previamente creado en abrirFichero()
+     * @throws IOException
+     */
+    public static void leerFichero(File file) throws IOException {
         String text = convertirFicheroToString(file);
-        JOptionPane.showMessageDialog(null, text , jFC.getName(new File(jFC.getSelectedFile().getAbsolutePath())), JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, text , file.getName(), JOptionPane.PLAIN_MESSAGE);
     }
 
-    private static void escribirFichero(File file) throws IOException{
+    /**
+     *  Muestra el contenido del archivo y permite editarlo
+     * @param file objeto previamente creado en abrirFichero()
+     * @throws IOException
+     */
+    public static void escribirFichero(File file) throws IOException{
         String text = convertirFicheroToString(file);
         JTextArea textArea = new JTextArea(text);
         textArea.setLineWrap(true);
@@ -129,12 +138,19 @@ public class PR_DAW_P3_Arturo_Puentes {
                 w.flush();
                 w.close();
         }
-        catch (Exception evt) {
+        catch (IOException evt) {
                 JOptionPane.showMessageDialog(null, evt.getMessage());
         }
     }
     
-    private static String convertirFicheroToString(File file) throws FileNotFoundException, IOException{
+    /**
+     * Convierte el contenido de un fichero de texto a String
+     * @param file objeto previamente creado en abrirFichero()
+     * @return Restorna el contenido del fichero en forma de String
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public static String convertirFicheroToString(File file) throws FileNotFoundException, IOException{
         BufferedReader in;
         in = new BufferedReader(new FileReader(file));
         String line = in.readLine();

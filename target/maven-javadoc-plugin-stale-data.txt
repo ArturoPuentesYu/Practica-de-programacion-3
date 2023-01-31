@@ -1,0 +1,47 @@
+@options
+@packages
+@argfile
+-encoding
+'UTF-8'
+-protected
+-source
+'19'
+-sourcepath
+'C:/Users/ajpyu/OneDrive/Documents/NetBeansProjects/PR_DAW_P3_Arturo_Puentes/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/ajpyu/OneDrive/Documents/NetBeansProjects/PR_DAW_P3_Arturo_Puentes/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'PR_DAW_P3_Arturo_Puentes 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'PR_DAW_P3_Arturo_Puentes 1.0-SNAPSHOT API'
+ifp.pr_daw_p3_arturo_puentes
+'C:/Users/ajpyu/OneDrive/Documents/NetBeansProjects/PR_DAW_P3_Arturo_Puentes/src/main/java/ifp/pr_daw_p3_arturo_puentes/PR_DAW_P3_Arturo_Puentes.java'
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\src\main\java = 1674993578680
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\allclasses-index.html = 1675183719905
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\allpackages-index.html = 1675183719913
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\copy.svg = 1675183720067
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\element-list = 1675183719778
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\help-doc.html = 1675183720041
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\index-all.html = 1675183720010
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\index.html = 1675183720025
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\jquery-ui.overrides.css = 1675183720131
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\member-search-index.js = 1675183719929
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\module-search-index.js = 1675183719918
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\overview-tree.html = 1675183719874
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\package-search-index.js = 1675183719922
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\script.js = 1675183720059
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\search-page.js = 1675183720101
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\search.html = 1675183720016
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\search.js = 1675183720089
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\stylesheet.css = 1675183720056
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\tag-search-index.js = 1675183719933
+C:\Users\ajpyu\OneDrive\Documents\NetBeansProjects\PR_DAW_P3_Arturo_Puentes\target\site\apidocs\type-search-index.js = 1675183719924
