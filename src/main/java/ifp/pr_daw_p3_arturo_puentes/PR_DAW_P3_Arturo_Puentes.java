@@ -22,14 +22,14 @@ public class PR_DAW_P3_Arturo_Puentes {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String[] opciones = {"Crear","Leer","Escribir","Borrar","Copiar","Salir"};
+        String[] opciones = {"Crear","Leer","Escribir","Salir"};
         int op;
         boolean bucle = true;
         while (bucle){
             op = JOptionPane.showOptionDialog(null, "Elije una opcion", "Gestor de archivos",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones,
             opciones[0]);
-            if (op == 5 || op == JOptionPane.CLOSED_OPTION) {
+            if (op == 3 || op == JOptionPane.CLOSED_OPTION) {
                 exit(0);
                 bucle = false;
             }
@@ -47,9 +47,6 @@ public class PR_DAW_P3_Arturo_Puentes {
                 case 2 -> {
                     escribirFichero(file);
                 }
-                case 3 -> {
-                }
-                case 4 -> {
                 }
                 case 6 -> {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado un fichero","Mensaje de error", JOptionPane.WARNING_MESSAGE);
@@ -151,10 +148,10 @@ public class PR_DAW_P3_Arturo_Puentes {
      * @throws IOException
      */
     public static String convertirFicheroToString(File file) throws FileNotFoundException, IOException{
-        BufferedReader in;
-        in = new BufferedReader(new FileReader(file));
+        BufferedReader in =  new BufferedReader(new FileReader(file));
         String line = in.readLine();
         String text = line;
+        line = in.readLine();
         while (line != null) {
             text = text + "\n" + line;
             line = in.readLine();
