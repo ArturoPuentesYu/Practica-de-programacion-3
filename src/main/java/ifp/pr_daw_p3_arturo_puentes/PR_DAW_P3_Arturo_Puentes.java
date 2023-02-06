@@ -47,13 +47,13 @@ public class PR_DAW_P3_Arturo_Puentes {
                 case 2 -> {
                     escribirFichero(file);
                 }
-                }
+                
                 case 6 -> {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado un fichero","Mensaje de error", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
-    }  
+    }
     
     /**
      * Utiliza JFileChooser para crear un objeto tipo File
