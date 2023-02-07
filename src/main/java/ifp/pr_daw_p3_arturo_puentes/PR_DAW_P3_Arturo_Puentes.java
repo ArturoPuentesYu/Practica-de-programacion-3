@@ -1,5 +1,6 @@
 package ifp.pr_daw_p3_arturo_puentes;
 
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,7 +36,7 @@ public class PR_DAW_P3_Arturo_Puentes {
             }
             File file = abrirFichero();
             if (file == null) {
-                op = 6;
+                op = 4;
             }
             switch (op){
                 case 0 -> {
@@ -47,9 +48,8 @@ public class PR_DAW_P3_Arturo_Puentes {
                 case 2 -> {
                     escribirFichero(file);
                 }
-                
-                case 6 -> {
-                    JOptionPane.showMessageDialog(null, "No se ha seleccionado un fichero","Mensaje de error", JOptionPane.WARNING_MESSAGE);
+                case 4 -> {
+                    System.out.println("No se ha realizado alguna operación.");
                 }
             }
         }
@@ -105,8 +105,13 @@ public class PR_DAW_P3_Arturo_Puentes {
      * @throws IOException
      */
     public static void leerFichero(File file) throws IOException {
-        String text = convertirFicheroToString(file);
-        JOptionPane.showMessageDialog(null, text , file.getName(), JOptionPane.PLAIN_MESSAGE);
+        if (file.exists()) {
+            String text = convertirFicheroToString(file);
+            abrirPanel(file.getName(),text,false);
+        } 
+        else {
+            JOptionPane.showMessageDialog(null, "Este fichero no existe", "Error", JOptionPane.WARNING_MESSAGE);
+        }        
     }
 
     /**
@@ -115,29 +120,27 @@ public class PR_DAW_P3_Arturo_Puentes {
      * @throws IOException
      */
     public static void escribirFichero(File file) throws IOException{
-        String text = convertirFicheroToString(file);
-        JTextArea textArea = new JTextArea(text);
-        textArea.setLineWrap(true);
-        textArea.setEditable(true);
-        JScrollPane scroll = new JScrollPane(textArea);
-        JOptionPane.showMessageDialog(null,scroll,file.getName(),JOptionPane.OK_OPTION);
-        
-        try {
-                // Crea el escritor de ficheros
-                FileWriter wr = new FileWriter(file, false);
-
-                // Crea el buffered writer para escribir
-                BufferedWriter w = new BufferedWriter(wr);
-
-                // Escribe del textArea
-                w.write(textArea.getText());
-                
-                w.flush();
-                w.close();
+        if (file.exists()) {
+            String text = convertirFicheroToString(file);
+            String textoEditado = abrirPanel(file.getName(),text,true);
+            
+            try {
+                    // Crea el escritor de ficheros
+                    FileWriter wr = new FileWriter(file, false);
+                    // Crea el buffered writer para escribir
+                    BufferedWriter w = new BufferedWriter(wr);
+                    // Escribe del textArea
+                    w.write(textoEditado);
+                    w.flush();
+                    w.close();
+            }
+            catch (IOException evt) {
+                    JOptionPane.showMessageDialog(null, evt.getMessage());
+            }
         }
-        catch (IOException evt) {
-                JOptionPane.showMessageDialog(null, evt.getMessage());
-        }
+        else {
+            JOptionPane.showMessageDialog(null, "Este fichero no existe", "Error", JOptionPane.WARNING_MESSAGE);
+        }        
     }
     
     /**
@@ -157,5 +160,22 @@ public class PR_DAW_P3_Arturo_Puentes {
             line = in.readLine();
         }
         return text;
+    }
+    
+     /**
+     * Método que abre el JOptionPanel para leer o escribrir los ficheros
+     * @param nombreFile Nombre del fichero para poner como título del panel
+     * @param text  Contenido del fichero
+     * @param editable boolean que determina si el panel es editable o no
+     * @return devuelve el texto editado
+     */
+    public static String abrirPanel(String nombreFile,String text,boolean editable){
+            JTextArea textArea = new JTextArea(text);
+            textArea.setLineWrap(true);
+            textArea.setEditable(editable);
+            textArea.setPreferredSize(new Dimension(375,450));
+            JScrollPane scroll = new JScrollPane(textArea);
+            JOptionPane.showMessageDialog(null,scroll, nombreFile,JOptionPane.PLAIN_MESSAGE);
+            return textArea.getText();
     }
 }
